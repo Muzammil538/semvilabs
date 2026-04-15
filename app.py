@@ -1,5 +1,5 @@
-from flask import Flask, send_from_directory, jsonify
 import os
+from flask import Flask, send_file, jsonify
 
 app = Flask(__name__)
 
@@ -14,22 +14,20 @@ def get_file(lab, question):
     if not os.path.exists(lab_path):
         return jsonify({"error": "Lab not found"}), 404
 
-    # sanitize input (important)
-    question = question.strip().lower()
+    # 🔥 Search for any file starting with question name
+    for file in os.listdir(lab_path):
+        name, ext = os.path.splitext(file)
 
-    for ext in EXTENSIONS:
-        filename = question + ext
-        file_path = os.path.join(lab_path, filename)
+        if name == question:
+            file_path = os.path.join(lab_path, file)
 
-        if os.path.exists(file_path):
-            return send_from_directory(
-                lab_path,
-                filename,
-                as_attachment=True
+            return send_file(
+                file_path,
+                as_attachment=True,
+                download_name=file   # ensures correct extension
             )
 
     return jsonify({"error": "Question not found"}), 404
-
 
 # Optional: list questions in a lab
 @app.route("/<lab>")
