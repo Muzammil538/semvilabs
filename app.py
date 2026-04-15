@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-BASE_DIR = os.path.join(os.getcwd(), "files")
+BASE_DIR = "files"
 
 EXTENSIONS = [ ".cpp", ".java", ".txt",".asm"]
 
