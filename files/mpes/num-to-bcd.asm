@@ -1,0 +1,32 @@
+DATA SEGMENT 
+DATA ENDS
+CODE SEGMENT 
+ASSUME CS:CODE , DS:DATA
+
+START : MOV AX,2000H
+        MOV DS,AX 
+        MOV SI,0500H 
+        MOV DI,0600H
+        MOV DX , 0000H
+        MOV AX,0000H
+        MOV AL,[SI]
+        CMP AL,64H
+        JB AHEAD
+        MOV BL,64H 
+        DIV BL 
+        MOV BH,AL
+        MOV AL,AH 
+        MOV AH,00H
+
+AHEAD :   CMP AL,0AH
+          JB NEXT
+          MOV BL,0AH
+          DIV BL
+          MOV DL,AL 
+          MOV AL,AH
+NEXT :    MOV CL,04H
+          ROR DL, CL
+          ADD DL, AL 
+          INT 21H
+CODE ENDS
+END START

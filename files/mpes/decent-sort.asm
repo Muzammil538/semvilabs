@@ -1,0 +1,23 @@
+DATA SEGMENT 
+DATA ENDS
+CODE SEGMENT 
+ASSUME CS:CODE , DS:DATA
+
+START : MOV AX,2000H
+        MOV DS, AX
+        MOV DL, 03
+STL_BACK: MOV CL,DL
+          MOV SI,0500H
+BACK :    MOV AL.[SI]
+          CMP AL,[SI+1]
+          JA AHEAD 
+          XCHG AL,[SI+1]
+          XCHG AL,[SI]
+AHEAD :   INC SI
+          DEC CL 
+          JNZ BACK 
+          DEC DL 
+          JNZ STL_BACK
+          INT 21H 
+CODE ENDS
+END START
