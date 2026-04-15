@@ -1,0 +1,11 @@
+MOUNT D D:\8086
+D: 
+EDIT <FILENAME>.ASM 
+FILE -> SAVE , FILE -> EXIT 
+MASM <FILENAME>.ASM 
+LINK <FILENAME>.OBJ 
+DEBUG <FILENAME>.EXE 
+U (Unassemble)
+E (Enter values)
+D (Display memory)
+G (Execute in a single instinct)
