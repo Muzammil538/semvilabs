@@ -102,18 +102,20 @@ def download_file(lab, qid):
     if qid not in mapping:
         return jsonify({"error": "Question not found"}), 404
 
-    # Get the actual filename from mapping
-    actual_filename = mapping[qid]["file"]  # This should be something like "program1.py"
+    # Debug: Print what's actually in mapping
+    print(f"Mapping for qid {qid}: {mapping[qid]}")
+    print(f"File value: {mapping[qid].get('file')}")
+
+    actual_filename = mapping[qid]["file"]
     file_path = os.path.join(get_lab_path(lab), actual_filename)
 
     if not os.path.exists(file_path):
         return jsonify({"error": "File missing"}), 404
 
-    # Send file with the correct name from mapping
     return send_file(
         file_path,
         as_attachment=True,
-        download_name=actual_filename  # Use the actual filename from mapping
+        download_name=actual_filename
     )
 
 # ✅ Health check
