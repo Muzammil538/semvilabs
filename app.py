@@ -1,6 +1,8 @@
 import os
 import json
 from flask import Flask, jsonify, send_file
+from flask import Response
+
 
 app = Flask(__name__)
 
@@ -45,6 +47,19 @@ def list_labs():
 
 
 # ✅ List questions in lab
+# @app.route("/<lab>")
+# def list_questions(lab):
+#     mapping = get_mapping(lab)
+
+#     if mapping is None:
+#         return jsonify({"error": "Lab not found"}), 404
+
+#     result = {
+#         qid: data["title"]
+#         for qid, data in mapping.items()
+#     }
+
+#     return jsonify(result)
 @app.route("/<lab>")
 def list_questions(lab):
     mapping = get_mapping(lab)
@@ -52,12 +67,20 @@ def list_questions(lab):
     if mapping is None:
         return jsonify({"error": "Lab not found"}), 404
 
-    result = {
-        qid: data["title"]
-        for qid, data in mapping.items()
-    }
-
-    return jsonify(result)
+    # Sort by question ID
+    sorted_items = sorted(mapping.items(), key=lambda x: int(x[0]))
+    
+    # Create line-wise text
+    output_lines = []
+    for qid, data in sorted_items:
+        title = data["title"].replace("\n", " ")  # Replace newlines with spaces
+        output_lines.append(f"{qid}. {title}")
+    
+    # Join with newlines
+    text_output = "\n".join(output_lines)
+    
+    # Return as plain text
+    return Response(text_output, mimetype='text/plain')
 
 
 # ✅ Preview code (prints in terminal)
