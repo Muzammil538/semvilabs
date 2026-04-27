@@ -1,0 +1,19 @@
+clc;
+clear all;
+close all;
+Fs=8000;%sampling frequency
+Ap=3;%passband gain
+As=20;%stopband gain
+Wp=2000/4000;%passband edge frequency
+Ws=500/4000;%stopband edge frequency
+[N,Wc]=cheb1ord(Wp,Ws,Ap,As);%order of the filter
+R=0.5;
+[z,p,k]=cheby1(N,R,Wp);
+[bz,az]=cheby1(N,R,Wp);
+subplot(2,1,1);
+[H, f]=freqz(bz,az,512,Fs);
+plot(f,abs(H));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+subplot(2,1,2);
+zplane(bz,az);

@@ -1,0 +1,32 @@
+%% Modulation Techniques
+%% AMDSB
+clc;clear all; close all;
+% Modulating the single tone message signal.
+f=10; %message signal frequency
+fc=1000 %carrier signal frequency
+Ts = 1/5000; %sampling duration=1/Fs where Fs is 5000
+K = 1;a = 1;
+subplot(6,1,1);
+t =0:Ts:0.1;m =cos(2*pi*f*t);
+plot(t,m);title('Message Signal')
+% plot of the carrier signal
+subplot(6,1,2);
+c = cos(2*pi*fc*t);
+plot(t,c);title('Carrier Signal')
+%%AM signal
+subplot(6,1,3);
+%m1=0.5; %modulation index m=0.5
+d = (1 + a*m).*c;
+plot(t,d);title('AM signal')
+%% AMDSB-SC
+d1=m.*c;
+subplot(6,1,4);plot(t,d1);title('AMDSB SC signal')
+%% AMSSB
+mh = imag(hilbert(m));
+sbu = m.*c - mh.*sin(2*pi*fc*t);
+sbl = m.*c + mh.*sin(2*pi*fc*t);
+subplot(6,1,5);plot(t,sbl);title('AMSSB signal')
+%% FM signal
+kf=1;
+d3 = cos(2*pi*fc*t + kf*cumsum(m));
+subplot(6,1,6) plot(t,d3);title('FM signal')

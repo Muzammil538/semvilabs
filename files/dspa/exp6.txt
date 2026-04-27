@@ -1,0 +1,57 @@
+clc;
+clear all;
+x = input('Enter the input sequence = ');
+N = length(x);
+for k = 1:N
+y(k) = 0;
+for n = 1:N
+y(k) = y(k)+x(n)*exp(-1i*2*pi*(k-1)*(n-1)/N);
+end
+end
+%code block to plot the input sequence
+t = 0:N-1;
+subplot(2,2,1);
+stem(t,x);
+ylabel('Amplitude ---->');xlabel('n ---->');title('Input Sequence');
+grid on;
+magnitude = abs(y); % Find the magnitudes of individual FFT points
+disp('FFT Sequence = ');
+disp(magnitude);
+%code block to plot the FFT sequence
+t = 0:N-1;
+subplot(2,2,2);
+stem(t,magnitude);ylabel('Amplitude ---->');xlabel('K ---->');title('FFT Sequence');
+grid on;
+R = length(y);
+for n = 1:R
+x1(n) = 0;
+for k = 1:R
+x1(n) = x1(n)+(1/R)*y(k)*exp(1i*2*pi*(k-1)*(n-1)/R);
+end
+end
+%code block to plot the IFFT sequence
+t = 0:R-1;
+subplot(2,2,3);
+stem(t,x1);
+disp('IFFT Sequence = ');
+disp(x1);ylabel('Amplitude ---->');xlabel('n ---->');title('IFFT sequence');
+grid on;
+
+
+%%program to compute fft using inbuilt function
+clc;
+clear all;
+close all;
+x=input('Enter the sequence : ')
+N=length(x)
+xK=fft(x)
+xn=ifft(xK)
+n=0:N-1;
+subplot (2,2,1);
+stem(n,x);xlabel('n---->');ylabel('amplitude');title('input sequence');
+subplot (2,2,2);
+stem(n,abs(xK));xlabel('n---->');ylabel('magnitude');title('magnitude response');
+subplot (2,2,3);
+stem(n,angle(xK));xlabel('n---->');ylabel('phase');title('Phase responce');
+subplot (2,2,4);
+stem(n,xn);xlabel('n---->');ylabel('amplitude');title('IFFT');

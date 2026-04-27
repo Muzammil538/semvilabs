@@ -1,0 +1,56 @@
+%% FIR LPF filter using Windows %%
+clc;
+clear all;
+close all;
+fs=8000; %sampling frequency
+fc=1200; %cut off frequency
+N=50; %Order of the filter
+wc=fc/(fs/2); %normalized cut-off frequency.The cut-off frequency Wc must be between
+0 < Wc < 1.0, with 1.0
+%corresponding to half the sample rate.
+beta=5.65;
+% fc1=125/Fn;
+% fc2=275/Fn;
+% % Fc=[fc1 fc2];
+% Fc=fc1;
+hn=fir1(N,wc,'low',boxcar(N+1));
+hn1=fir1(N,wc,'low',blackman(N+1));
+hn2=fir1(N,wc,hamming(N+1));
+hn3=fir1(N,wc,hanning(N+1));
+hn4=fir1(N,wc,kaiser(N+1,beta));
+% freqz(hn,1,512,fs);
+[H,f]=freqz(hn,1,512,fs);
+[H1,f1]=freqz(hn1,1,512,fs);
+[H2,f2]=freqz(hn2,1,512,fs);
+[H3,f3]=freqz(hn3,1,512,fs);
+[H4,f4]=freqz(hn4,1,512,fs);
+figure
+plot(f,20*log10(abs(H)));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+title('Low pass filter using Rectangular window');
+grid
+figure
+plot(f1,20*log10(abs(H1)));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+title('Low pass filter using Blackman window');
+grid
+figure
+plot(f2,20*log10(abs(H2)));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+title('Low pass filter using hamming window');
+grid
+figure
+plot(f3,20*log10(abs(H3)));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+title('Low pass filter using Hanning window');
+grid
+figure
+plot(f4,20*log10(abs(H4)));
+xlabel('frequency in Hz');
+ylabel('magnitude response');
+title('Low pass filter using kaiser window with beta=5.65');
+grid

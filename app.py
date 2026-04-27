@@ -1,50 +1,119 @@
 import os
-from flask import Flask, send_file, jsonify
+import json
+from flask import Flask, jsonify, send_file
 
 app = Flask(__name__)
 
-BASE_DIR = "files"
+BASE_DIR = os.path.join(os.getcwd(), "files")
 
-EXTENSIONS = [ ".cpp", ".java", ".txt",".asm"]
 
-@app.route("/<lab>/<question>")
-def get_file(lab, question):
-    lab_path = os.path.join(BASE_DIR, lab)
+# -------------------------
+# Helpers
+# -------------------------
 
-    if not os.path.exists(lab_path):
-        return jsonify({"error": "Lab not found"}), 404
+def get_lab_path(lab):
+    return os.path.join(BASE_DIR, lab)
 
-    # 🔥 Search for any file starting with question name
-    for file in os.listdir(lab_path):
-        name, ext = os.path.splitext(file)
 
-        if name == question:
-            file_path = os.path.join(lab_path, file)
+def get_mapping(lab):
+    lab_path = get_lab_path(lab)
+    mapping_path = os.path.join(lab_path, "mapping.json")
 
-            return send_file(
-                file_path,
-                as_attachment=True,
-                download_name=file   # ensures correct extension
-            )
+    if not os.path.exists(mapping_path):
+        return None
 
-    return jsonify({"error": "Question not found"}), 404
+    with open(mapping_path, "r") as f:
+        return json.load(f)
 
-# Optional: list questions in a lab
+
+# -------------------------
+# Routes
+# -------------------------
+
+# ✅ List all labs
+@app.route("/labs")
+def list_labs():
+    if not os.path.exists(BASE_DIR):
+        return jsonify([])
+
+    labs = [
+        d for d in os.listdir(BASE_DIR)
+        if os.path.isdir(os.path.join(BASE_DIR, d))
+    ]
+
+    return jsonify(labs)
+
+
+# ✅ List questions in lab
 @app.route("/<lab>")
 def list_questions(lab):
-    lab_path = os.path.join(BASE_DIR, lab)
+    mapping = get_mapping(lab)
 
-    if not os.path.exists(lab_path):
+    if mapping is None:
         return jsonify({"error": "Lab not found"}), 404
 
-    return jsonify(os.listdir(lab_path))
+    result = {
+        qid: data["title"]
+        for qid, data in mapping.items()
+    }
+
+    return jsonify(result)
 
 
-# Health check
+# ✅ Preview code (prints in terminal)
+@app.route("/<lab>/<qid>")
+def preview_code(lab, qid):
+    mapping = get_mapping(lab)
+
+    if mapping is None:
+        return jsonify({"error": "Lab not found"}), 404
+
+    if qid not in mapping:
+        return jsonify({"error": "Question not found"}), 404
+
+    file_name = mapping[qid]["file"]
+    file_path = os.path.join(get_lab_path(lab), file_name)
+
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File missing"}), 404
+
+    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+        return f.read(), 200, {"Content-Type": "text/plain"}
+
+
+# ✅ Download file
+@app.route("/<lab>/<qid>/file")
+def download_file(lab, qid):
+    mapping = get_mapping(lab)
+
+    if mapping is None:
+        return jsonify({"error": "Lab not found"}), 404
+
+    if qid not in mapping:
+        return jsonify({"error": "Question not found"}), 404
+
+    file_name = mapping[qid]["file"]
+    file_path = os.path.join(get_lab_path(lab), file_name)
+
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File missing"}), 404
+
+    return send_file(
+        file_path,
+        as_attachment=True,
+        download_name=file_name  # ensures correct extension
+    )
+
+
+# ✅ Health check
 @app.route("/")
 def home():
     return "Semvi Labs API Running 🚀"
 
+
+# -------------------------
+# Run
+# -------------------------
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)

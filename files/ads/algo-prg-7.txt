@@ -1,0 +1,6 @@
+Algorithm
+Start
+Select pivot
+Partition array
+Left < pivot, Right > pivot
+Recursively sort left and right

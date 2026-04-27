@@ -1,0 +1,56 @@
+%% Generation of Fundamental Signals
+%% UNIT IMPULSE
+clc;
+clear all
+close all
+N=input('enter the length of the sequence: N='); %% No. of samples
+n=-(N/2):((N/2)-1); %% Defining time index
+x=zeros(1,N);
+x((N/2)+1)=1;
+figure
+stem(n,x);
+xlabel('No. of Samples.....n');
+ylabel('Amplitude')
+title('Unit Implse')
+%% UNIT STEP
+x1=zeros(1,N);
+x1((N/2)+1:N)=1;
+figure
+stem(n,x1);
+xlabel('No. of Samples.....n');
+ylabel('Amplitude')
+title('Unit Step')
+%% UNIT EXPONENTIAL
+t=1:1:N;
+a=0.1;
+x2=exp(-a*t);
+figure
+stem(t,x2);
+xlabel('No. of Samples.....n');
+ylabel('Amplitude')
+title('Unit Exponential')
+%% UNIT RAMP
+x3=t;
+figure
+stem(t,x3);
+xlabel('No. of Samples.....n');
+ylabel('Amplitude')
+title('Unit Ramp')
+%% SINUSOID
+t=1:1:100;
+f=100;
+fs=2000;
+A=2;
+x4=A*sin(2*pi*(f/fs)*t);
+figure
+plot(t,x4);
+xlabel('No. of Samples.....n');
+ylabel('Amplitude')
+title('Sine with frequency of 100Hz')
+% discrete sinc sequence generator
+n = -5:.1:5;
+x = sinc(n);
+stem(n,x);
+xlabel('Time (sec)');
+ylabel('Amplitude');
+title('discrete Sinc Wave');

@@ -1,0 +1,17 @@
+a) Inorder (using stack)
+Start
+Push all left nodes
+Pop node
+Print
+Move to right
+Repeat
+b) Preorder
+Push root
+Pop and print
+Push right then left
+c) Postorder
+Use two stacks OR one stack logic
+Process nodes in reverse order
+d) Spiral Order
+Use two stacks
+Alternate direction each level

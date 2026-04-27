@@ -1,0 +1,6 @@
+Algorithm
+Start
+Compare pattern with text
+If mismatch → shift by 1
+Repeat
+If match → print position

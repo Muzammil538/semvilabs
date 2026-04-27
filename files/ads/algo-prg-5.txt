@@ -1,0 +1,7 @@
+Algorithm
+Start
+Insert key into node
+If node not full → insert
+If full → split node
+Move middle element up
+Repeat

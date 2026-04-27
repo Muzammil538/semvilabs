@@ -1,0 +1,9 @@
+DFS
+Start
+Visit node
+Mark visited
+Visit neighbors recursively
+🔹 BFS
+Start
+Insert node in queue
+Visit and enqueue neighbors

@@ -1,0 +1,20 @@
+a) Creation
+Start
+Insert first node as root
+For each new node
+If value < root → go left
+Else → go right
+Insert at NULL position
+b) Deletion
+Start
+Search node
+Case 1: Leaf → delete directly
+Case 2: One child → replace with child
+Case 3: Two children → replace with inorder successor
+Delete node
+c) Traversal (Inorder)
+
+If node is not NULL
+Traverse left subtree
+Print node data
+Traverse right subtree

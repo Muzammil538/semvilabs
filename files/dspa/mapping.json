@@ -1,0 +1,42 @@
+{
+    "1": {
+        "title": "E1. GENERATE - UNIT STEP, RAMP, IMPULSE, EXPONENTIAL, SINUSOIDAL AND SINC FUNCTIONS",
+        "file": "exp1.txt"
+    },
+    "2": {
+        "title": "E2. Perform the following Modulation techniques\na) AMDSB and AMDSB-SC\nb) FM.",
+        "file": "exp2.txt"
+    },
+    "3": {
+        "title": "E3. Perform the Correlation of two sequences",
+        "file": "exp3.txt"
+    },
+    "4": {
+        "title": "E4. Perform\na) Linear Convolution of two sequences.\nb) Circular Convolution of two sequences.",
+        "file": "exp4.txt"
+    },
+    "5": {
+        "title": "E5. Compute DFT of a sequence",
+        "file": "exp5.txt"
+    },
+    "6": {
+        "title": "E6. Compute FFT of a sequence",
+        "file": "exp6.txt"
+    },
+    "7": {
+        "title": "E7. Study the given System (Impulse Response, Poles and Zeros, Frequency\nResponse)",
+        "file": "exp7.txt"
+    },
+    "8": {
+        "title": "E8. Design all types of Butterworth IIR filters to meet the given specifications",
+        "file": "exp8.txt"
+    },
+    "9": {
+        "title": "E9. Design all types of Chebyshev IIR filters to meet the given specifications",
+        "file": "exp9.txt"
+    },
+    "10": {
+        "title": "E10. Design FIR filters using Windows",
+        "file": "exp10.txt"
+    }
+}

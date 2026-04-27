@@ -1,0 +1,18 @@
+a) Creation
+Start
+Create a new node
+Input data
+Set left and right pointers to NULL
+Return node
+b) Insertion (Level order/simple)
+Start
+If tree is empty → create root
+Else
+Traverse tree level-wise
+Insert new node at first empty position (left/right)
+Stop
+c) Traversal (Recursion – Inorder example)
+If node is not NULL
+Traverse left subtree
+Print node data
+Traverse right subtree

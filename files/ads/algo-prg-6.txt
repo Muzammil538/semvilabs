@@ -1,0 +1,7 @@
+Algorithm
+Start
+Generate Fibonacci numbers
+Compare element with fib index
+If smaller → move left
+If greater → move right
+Repeat until found

@@ -1,0 +1,98 @@
+{
+    "1": {
+        "title": "Program to perform following binary tree operations.\ni) creation ii) insertion of a node iii) traversal using recursion.",
+        "file": "program1.cpp"
+    },
+    "2": {
+        "title": "Program to perform following binary search tree operations.\ni)creation ii) deletion of a node iii) traversal using recursion.",
+        "file": "program2.cpp"
+    },
+    "3": {
+        "title": "Program to perform following binary search tree traversal operations\nwithout recursion. i) Inorder ii) Preorder iii) Postorder iv) Spiral order",
+        "file": "program3.cpp"
+    },
+    "4": {
+        "title": "Program to implement AVL tree construction",
+        "file": "program4.cpp"
+    },
+    "5": {
+        "title": "Program to implement B-tree construction.",
+        "file": "program5.cpp"
+    },
+    "6": {
+        "title": "Program to implement Fibonacci search.",
+        "file": "program6.cpp"
+    },
+    "7": {
+        "title": "Program to implement Quick sort.",
+        "file": "program7.cpp"
+    },
+    "8": {
+        "title": "Program to implement heap sort.",
+        "file": "program8.cpp"
+    },
+    "9": {
+        "title": "Program to implement Topological sort.",
+        "file": "program9.cpp"
+    },
+    "10": {
+        "title": "Program to implement the following graph traversal techniques.\na)Depth first search b) Breadth first search.",
+        "file": "program10.cpp"
+    },
+    "11": {
+        "title": "Program to implement Naive Algorithm.",
+        "file": "program11.cpp"
+    },
+    "12": {
+        "title": "Program to implement Boyer Moore Algorithm",
+        "file": "program12.cpp"
+    },
+    "13": {
+        "title": "Algorithm to perform following binary tree operations.\ni) creation ii) insertion of a node iii) traversal using recursion.",
+        "file": "algo-prg-1.txt"
+    },
+    "14": {
+        "title": "Algorithm to perform following binary search tree operations.\ni)creation ii) deletion of a node iii) traversal using recursion.",
+        "file": "algo-prg-2.txt"
+    },
+    "15": {
+        "title": "Algorithm to perform following binary search tree traversal operations\nwithout recursion. i) Inorder ii) Preorder iii) Postorder iv) Spiral order",
+        "file": "algo-prg-3.txt"
+    },
+    "16": {
+        "title": "Program to implement AVL tree construction",
+        "file": "algo-prg-4.txt"
+    },
+    "17": {
+        "title": "Program to implement B-tree construction.",
+        "file": "algo-prg-5.txt"
+    },
+    "18": {
+        "title": "Algorithm to implement Fibonacci search.",
+        "file": "algo-prg-6.txt"
+    },
+    "19": {
+        "title": "Algorithm to implement Quick sort.",
+        "file": "algo-prg-7.txt"
+    },
+    "20": {
+        "title": "Algorithm to implement heap sort.",
+        "file": "algo-prg-8.txt"
+    },
+    "21": {
+        "title": "Algorithm to implement Topological sort.",
+        "file": "algo-prg-9.txt"
+    },
+    "22": {
+        "title": "Algorithm to implement the following graph traversal techniques.\na)Depth first search b) Breadth first search.",
+        "file": "algo-prg-10.txt"
+    },
+    "23": {
+        "title": "Algorithm to implement Naive Algorithm.",
+        "file": "algo-prg-11.txt"
+    },
+    "24": {
+        "title": "Algorithm to implement Boyer Moore Algorithm",
+        "file": "algo-prg-12.txt"
+    }
+}

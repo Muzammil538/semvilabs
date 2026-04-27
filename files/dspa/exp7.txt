@@ -1,0 +1,27 @@
+clc;clear all;
+b=input('Enter the numerator coefficients:');
+a=input('Enter the denominator coefficients:');
+[h,w]=freqz(b,a); %Frequency response of digital filter h=complex frequency response,
+w=frequency in radians/sample
+% w/pi %normalized frequency
+subplot(2,1,1);
+plot(w/pi,abs(h));grid;
+xlabel('Normalised Frequency');
+ylabel('Magnitude in dB');
+title('Magnitude Response');
+subplot(2,1,2);
+plot(w/pi,angle(h));grid;
+xlabel('Normalised Frequency');
+ylabel('phase in radians');
+title('Phase Response');
+figure
+tf(b, a, 0.1) %discrete-time transfer function with sample time TS=0.1
+zrs=roots(b) % zeros of transfer function
+pls=roots(a) % poles of transfer function
+zplane(zrs,pls) %plots the zeros and poles
+[h,t]=impz(b,a,4); %impulse response of the filter for 4 samples
+% subplot(3,1,3);
+figure
+stem(t,h);title('plot of impulse response');
+ylabel('amplitude');
+xlabel('time index----->N');

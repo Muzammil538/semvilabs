@@ -1,0 +1,10 @@
+Algorithm
+Start
+Insert node like BST
+Calculate balance factor
+If imbalance occurs
+LL → Right rotate
+RR → Left rotate
+LR → Left + Right
+RL → Right + Left
+Repeat for all nodes

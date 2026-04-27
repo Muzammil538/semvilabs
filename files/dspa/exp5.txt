@@ -1,0 +1,47 @@
+clc
+close all;
+clear all;
+x=input('Enter the input sequence:');
+N=length(x);%length of the sequence
+disp(N)
+%perform DFT
+y=zeros(1,N);
+for k=0:N-1
+for n=0:N-1
+y(k+1)=y(k+1)+x(n+1)*exp((-2*i*pi*k*n)/N);
+end
+end
+disp('y=')
+disp(y)
+%plot the input sequence
+t=0:N-1;
+subplot(3,2,1)
+stem(t,x);xlabel('
+%plot the DFT sequence
+subplot(3,2,2)
+stem(t,y);xlabel('
+%magnitude of y
+magnitude=abs(y)
+subplot(3,2,3);
+stem(t,magnitude)xlabel('
+%phase of y
+z=phase(y);
+subplot(3,2,4)
+stem(t,z)xlabel('
+%IDFT of the sequence
+ixk=zeros(1,N);
+for n=0:N-1
+for k=0:N-1
+end
+---->n');ylabel('Amplitude');title('Input sequence');
+---->n');ylabel('Amplitude');title('DFT');
+---->n');ylabel('Amplitude');title('Magnitude');
+---->n');ylabel('Amplitude');title('Phase');
+ixk(n+1)=ixk(n+1)+(y(k+1)*exp(i*2*pi*k*n/N));
+end
+ixk=ixk./N;
+t=0:N-1;
+subplot(3,2,5);
+stem(t,ixk);ylabel('Amplitude');xlabel('Time Index');title('IDFT sequence');
+disp('IDFT of y(n)=')
+disp (ixk)

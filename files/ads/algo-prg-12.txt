@@ -1,0 +1,6 @@
+Algorithm
+Start
+Compare pattern from right
+If mismatch → apply bad character rule
+Shift pattern
+Repeat

@@ -1,0 +1,6 @@
+Algorithm
+Start
+Find nodes with indegree 0
+Add to queue
+Remove node and reduce indegree
+Repeat

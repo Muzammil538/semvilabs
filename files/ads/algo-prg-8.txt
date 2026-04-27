@@ -1,0 +1,7 @@
+Algorithm
+Start
+Build max heap
+Swap root with last
+Reduce heap size
+Heapify
+Repeat
