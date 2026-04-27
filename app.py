@@ -47,19 +47,6 @@ def list_labs():
 
 
 # ✅ List questions in lab
-# @app.route("/<lab>")
-# def list_questions(lab):
-#     mapping = get_mapping(lab)
-
-#     if mapping is None:
-#         return jsonify({"error": "Lab not found"}), 404
-
-#     result = {
-#         qid: data["title"]
-#         for qid, data in mapping.items()
-#     }
-
-#     return jsonify(result)
 @app.route("/<lab>")
 def list_questions(lab):
     mapping = get_mapping(lab)
@@ -115,18 +102,19 @@ def download_file(lab, qid):
     if qid not in mapping:
         return jsonify({"error": "Question not found"}), 404
 
-    file_name = mapping[qid]["file"]
-    file_path = os.path.join(get_lab_path(lab), file_name)
+    # Get the actual filename from mapping
+    actual_filename = mapping[qid]["file"]  # This should be something like "program1.py"
+    file_path = os.path.join(get_lab_path(lab), actual_filename)
 
     if not os.path.exists(file_path):
         return jsonify({"error": "File missing"}), 404
 
+    # Send file with the correct name from mapping
     return send_file(
         file_path,
         as_attachment=True,
-        download_name=file_name  # ensures correct extension
+        download_name=actual_filename  # Use the actual filename from mapping
     )
-
 
 # ✅ Health check
 @app.route("/")
