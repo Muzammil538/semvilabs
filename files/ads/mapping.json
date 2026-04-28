@@ -94,5 +94,9 @@
     "24": {
         "title": "Algorithm to implement Boyer Moore Algorithm",
         "file": "algo-prg-12.txt"
+    },
+    "25": {
+        "title": "Merge sort program",
+        "file": "merge.cpp"
     }
 }
