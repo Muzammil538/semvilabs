@@ -3,12 +3,21 @@ import json
 from flask import Flask, jsonify, send_file
 from flask import Response
 import logging
+from openai import OpenAI
+from flask import Response
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
 BASE_DIR = os.path.join(os.getcwd(), "files")
+API_KEY = os.getenv("NVIDIA_API_KEY")
 
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=API_KEY
+)
 
 # -------------------------
 # Helpers
@@ -130,6 +139,38 @@ def download_file(lab, qid):
         as_attachment=True,
         download_name=actual_filename
     )
+    
+
+@app.route("/viva/<path:question>")
+def viva(question):
+    try:
+        prompt = f"""
+You are helping a student in a viva exam.
+
+Explain clearly, briefly (3–5 lines), and in simple language.
+Paraphrase differently each time.
+
+Question: {question}
+"""
+
+        completion = client.chat.completions.create(
+            model="mistralai/magistral-small-2506",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            top_p=0.95,
+            max_tokens=500,   # ⚠️ reduce from 40960 (too large)
+            stream=False      # ✅ IMPORTANT
+        )
+
+        answer = completion.choices[0].message.content
+
+        return Response(answer, mimetype="text/plain")
+
+    except Exception as e:
+        return Response(f"Error: {str(e)}", mimetype="text/plain"), 500
+
+
+
 # ✅ Health check
 @app.route("/")
 def home():
