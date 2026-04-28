@@ -2,6 +2,7 @@ import os
 import json
 from flask import Flask, jsonify, send_file
 from flask import Response
+import logging
 
 
 app = Flask(__name__)
@@ -92,22 +93,34 @@ def preview_code(lab, qid):
 
 
 # ✅ Download file
+
 @app.route("/<lab>/<qid>/file")
 def download_file(lab, qid):
+    app.logger.info(f"Download requested for lab={lab}, qid={qid}")
+    
     mapping = get_mapping(lab)
 
     if mapping is None:
+        app.logger.error(f"Lab {lab} not found")
         return jsonify({"error": "Lab not found"}), 404
 
     if qid not in mapping:
+        app.logger.error(f"Question {qid} not found in lab {lab}")
         return jsonify({"error": "Question not found"}), 404
 
-    # Debug: Print what's actually in mapping
-    print(f"Mapping for qid {qid}: {mapping[qid]}")
-    print(f"File value: {mapping[qid].get('file')}")
+    # Log what's in mapping
+    app.logger.info(f"Mapping for {qid}: {mapping[qid]}")
+    
+    actual_filename = mapping[qid].get("file")
+    app.logger.info(f"Filename from mapping: {actual_filename}")
+    
+    if not actual_filename:
+        app.logger.error(f"No 'file' key in mapping for {qid}")
+        return jsonify({"error": "No file associated"}), 404
 
-    actual_filename = mapping[qid]["file"]
     file_path = os.path.join(get_lab_path(lab), actual_filename)
+    app.logger.info(f"Full file path: {file_path}")
+    app.logger.info(f"File exists: {os.path.exists(file_path)}")
 
     if not os.path.exists(file_path):
         return jsonify({"error": "File missing"}), 404
@@ -117,7 +130,6 @@ def download_file(lab, qid):
         as_attachment=True,
         download_name=actual_filename
     )
-
 # ✅ Health check
 @app.route("/")
 def home():
