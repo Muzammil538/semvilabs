@@ -6,6 +6,7 @@ import logging
 from openai import OpenAI
 from flask import Response
 from dotenv import load_dotenv
+from flask import request
 
 load_dotenv()
 
@@ -141,8 +142,12 @@ def download_file(lab, qid):
     )
     
 
-@app.route("/viva/<path:question>")
+@app.route("/viva")
 def viva(question):
+    question = request.args.get("q")
+
+    if not question:
+        return jsonify({"error": "Missing question"}), 400
     try:
         prompt = f"""
 You are helping a student in a viva exam.
