@@ -1,9 +1,9 @@
 AREA SUBSTRACTION , CODE, READONLY
-ENTRY ;Mark first instruction to execute
+ENTRY ;
 START
-MOV R1,#0x4C ;R1 = 0x4C
-MOV R2,#0x6E ;R2 = 0x6E
-SUBS R0,R1,R2 ;R0 = R1 – R2
+  MOV R1,#0x4C ;R1 = 0x4C
+  MOV R2,#0x6E ;R2 = 0x6E
+  SUBS R0,R1,R2 ;R0 = R1 – R2
 NOP
 NOP
 NOP
