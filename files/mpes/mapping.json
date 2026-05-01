@@ -66,5 +66,25 @@
     "17": {
         "title": "To writeEmbedded C program to demonstrate the flashing of LED Using LPC2148",
         "file": "exp8.c"
+    },
+    "18": {
+        "title": "Stepper Motor",
+        "file": "stepper.c"
+    },
+    "19": {
+        "title": "Steps for MASAM",
+        "file": "steps.txt"
+    },
+    "20": {
+        "title": "Buzzer",
+        "file": "Buzzer.c"
+    },
+    "21": {
+        "title": "Smallest Number",
+        "file": "small.asm"
+    },
+    "22": {
+        "title": "Largest Number",
+        "file": "big.asm"
     }
 }

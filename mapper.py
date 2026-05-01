@@ -22,7 +22,7 @@ def get_files(lab):
     lab_path = os.path.join(BASE_DIR, lab)
     return [
         f for f in os.listdir(lab_path)
-        if f != "mapping.json"
+        if f != "mapping.json" 
     ]
 
 def load_mapping(lab):
