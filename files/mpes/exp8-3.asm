@@ -1,0 +1,11 @@
+AREA SUBSTRACTION , CODE, READONLY
+ENTRY ;Mark first instruction to execute
+START
+MOV R1,#0x4C ;R1 = 0x4C
+MOV R2,#0x6E ;R2 = 0x6E
+SUBS R0,R1,R2 ;R0 = R1 – R2
+NOP
+NOP
+NOP
+BACK B BACK
+END ;Mark end of file

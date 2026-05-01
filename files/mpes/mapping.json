@@ -1,0 +1,70 @@
+{
+    "1": {
+        "title": "MULTIPLICATION AND DIVISION",
+        "file": "exp1.asm"
+    },
+    "2": {
+        "title": "16 BIT DIVISION",
+        "file": "exp1-1.asm"
+    },
+    "3": {
+        "title": "ALP FOR STRING MANIPULATION",
+        "file": "exp2.asm"
+    },
+    "4": {
+        "title": "reverse a string using MASM",
+        "file": "exp2-2.asm"
+    },
+    "5": {
+        "title": "TO SORT THE NUMBERS IN ASCENDING ORDER",
+        "file": "exp3-1.asm"
+    },
+    "6": {
+        "title": "TO SORT THE NUMBERS IN DESCENDING ORDER",
+        "file": "exp3-2.asm"
+    },
+    "7": {
+        "title": "Program to convert binary number to BCD number",
+        "file": "exp5-1.asm"
+    },
+    "8": {
+        "title": "ALP to convert BCD number to binary number",
+        "file": "exp5-2.asm"
+    },
+    "9": {
+        "title": "Write an ALP to find smallest number in the array.",
+        "file": "exp6-1.asm"
+    },
+    "10": {
+        "title": "Write an ALP to find largest number in an array.",
+        "file": "exp6-2.asm"
+    },
+    "11": {
+        "title": "Write an ALP to Arranging in Descending order",
+        "file": "exp6-3.asm"
+    },
+    "12": {
+        "title": "Write an ALP to Arranging in Asscending order",
+        "file": "exp6-4.asm"
+    },
+    "13": {
+        "title": "Write a program to add an array of 16 bit numbers and store the 32 bit result in internal RAM.",
+        "file": "exp8-1.asm"
+    },
+    "14": {
+        "title": "Write a program to multiply two 16 bit binary numbers.",
+        "file": "exp8-2.asm"
+    },
+    "15": {
+        "title": "Write a program for subtraction",
+        "file": "exp8-3.asm"
+    },
+    "16": {
+        "title": "Write a program to find factorial of a number.",
+        "file": "exp8-4.asm"
+    },
+    "17": {
+        "title": "To writeEmbedded C program to demonstrate the flashing of LED Using LPC2148",
+        "file": "exp8.c"
+    }
+}
